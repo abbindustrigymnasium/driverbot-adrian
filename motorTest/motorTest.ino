@@ -1,3 +1,5 @@
+
+#include <Arduino.h>
 #define motorPinRightDir  0//D2
 #define motorPinRightSpeed 5//D1
 
@@ -12,6 +14,7 @@ void setup() {
 void loop() {
   int speed = 1024;
   int dir = 0;
+  Serial.printf("Hello");
 
   delay(2200);
   digitalWrite(motorPinRightDir, dir);
