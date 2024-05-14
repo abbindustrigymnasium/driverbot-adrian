@@ -36,6 +36,8 @@ export function startConnect() {
   };
   client = mqtt.connect(url, options);
   client.on('message', onMessage);
+// Joy stick thing:
+// https://bobboteck.github.io/joy/joy.html
 
   client
     .on("connect", function () {
