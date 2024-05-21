@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { set } from "firebase/database";
     import { onSend, startConnect, startDisconnect} from "../stores/mqttStore";
-    import { isConnected } from "../stores/store";
+    import { isConnected, isKeymode } from "../stores/store";
+    
 
     function sendMessage(msg: string)
     {
@@ -8,6 +10,15 @@
 
         onSend("sten", message)
     }
+
+    
+    function toogleKeymode()
+    {
+        isKeymode.update(value => !value);
+        console.log($isKeymode)
+    }
+
+    
 </script>
 
 <div class=" text-center flex flex-col items-center">
@@ -23,6 +34,7 @@
     
     <button type="button" class="btn variant-filled-primary my-2" disabled={$isConnected} on:click={startConnect}>Connect</button>
     <button type="button" class="btn variant-filled-primary" on:click={() => sendMessage("Hej")}>Send Message</button>
+    <button type="button" class="btn variant-filled-primary my-2" on:click={() => toogleKeymode()}>Switch Mode</button>
 </div>
     
 <style>

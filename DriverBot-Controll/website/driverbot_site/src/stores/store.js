@@ -16,3 +16,4 @@ export const messages = writable([]);
  * @type {import('svelte/store').Writable<boolean>}
  */
 export const isConnected = writable(false);
+export const isKeymode = writable(false);

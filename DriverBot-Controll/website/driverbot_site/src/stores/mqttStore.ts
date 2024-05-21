@@ -74,7 +74,7 @@ const onMessage = (topic: any, message: string) => {
  * Sets the connection status and sends a log message.
  * @param {boolean} c - The connection status.
  */
-function Connecting(c: any) {
+function Connecting(c: boolean) {
   isConnected.set(c);
   onSend("logger", clientId + " har anslutits.");
 }
