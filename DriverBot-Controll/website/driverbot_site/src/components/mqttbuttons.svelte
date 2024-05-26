@@ -1,7 +1,8 @@
 <script lang="ts">
   import { set } from "firebase/database";
     import { onSend, startConnect, startDisconnect} from "../stores/mqttStore";
-    import { isConnected, isKeymode } from "../stores/store";
+    import { isConnected, isKeymode, dummyRefresher } from "../stores/store";
+  import { onMount } from "svelte";
     
 
     function sendMessage(msg: string)
@@ -17,6 +18,20 @@
         isKeymode.update(value => !value);
         console.log($isKeymode)
     }
+
+    onMount(()=> {
+        addEventListener("resize", event => {
+        dummyRefresher.update(value => value+=1);
+        
+    })
+    return ()=> {
+            removeEventListener("resize", event => {
+                dummyRefresher.update(value => value+=1);
+            })
+        }
+    })
+    
+
 
     
 </script>
