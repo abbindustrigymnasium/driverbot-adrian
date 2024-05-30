@@ -1,4 +1,64 @@
+<script lang="ts">
+    import { onMount } from "svelte";
+    import { onSend } from "../stores/mqttStore";
+    import { isConnected } from "../stores/store";
 
+    function handleKeyDown(key: string)
+    {
+        if ($isConnected)
+        {
+            console.log(key + " down");
+            onSend("key_down", key);
+        }
+         else
+        {
+            console.log("not connected!")
+        }
+        
+    }
+    function handleKeyUp(key: string)
+    {
+        if ($isConnected)
+        {
+            console.log(key + " up");
+            onSend("key_up", key);
+        }
+         else
+        {
+            console.log("not connected!")
+        }
+        
+    }
+
+    onMount(()=> {
+        addEventListener("keydown", event => {
+            if (event.repeat) return;
+            switch(event.key)
+            {
+                case "w":
+                case "a":
+                case "s":
+                case "d":
+                    handleKeyDown(event.key);
+                    break;
+            }
+            
+        })
+        addEventListener("keyup", event => {
+            switch(event.key)
+            {
+                case "w":
+                case "a":
+                case "s":
+                case "d":
+                    handleKeyUp(event.key);
+                    break;
+            }
+            
+        })
+    })
+
+</script>
 
 
 <div>

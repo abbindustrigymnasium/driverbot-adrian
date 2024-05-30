@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { set } from "firebase/database";
     import { onSend, startConnect, startDisconnect} from "../stores/mqttStore";
     import { isConnected, isKeymode, dummyRefresher } from "../stores/store";
   import { onMount } from "svelte";
@@ -9,7 +8,7 @@
     {
         const message = msg === "Hej" ? "Hej": "";
 
-        onSend("sten", message)
+        onSend("key_down", message)
     }
 
     

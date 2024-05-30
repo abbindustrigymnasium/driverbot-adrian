@@ -3,7 +3,7 @@ import { PUBLIC_MQTT_NAME, PUBLIC_MQTT_PASSWORD } from "$env/static/public";
 import mqtt from "mqtt";
 import { isConnected } from './store';
 let connected = false;
-let User = { adress: "maqiatto.com", port: "8883", clientId: "Client_Admin", name: PUBLIC_MQTT_NAME, password: PUBLIC_MQTT_PASSWORD, topic: "sten" };
+let User = { adress: "maqiatto.com", port: "8883", clientId: "Client_Admin", name: PUBLIC_MQTT_NAME, password: PUBLIC_MQTT_PASSWORD, topic: "key_down" };
 let clientId = "notyetAssigned";
 let client: any = null; 
 let options = {};
@@ -64,7 +64,6 @@ export function startConnect() {
  * Here you can make a client that listens to a topic and then does something with the message.
  */
 const onMessage = (topic: any, message: string) => {
-  console.log(message);
   console.log(message.toString());
   const msg = message.toString();
   const time = new Date().getTime();
