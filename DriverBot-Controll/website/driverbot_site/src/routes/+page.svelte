@@ -17,13 +17,18 @@
 		<div class="flex justify-center space-x-2">
 			<a
 				class="btn variant-filled-primary"
-				href="https://www.youtube.com/channel/UC2eN3ft0DKqTo6kSbJDm5ow"
-				target="_blank"
+				href="./controller"
 				rel="noreferrer"
 			>
-				Press this button:)
+				Controller
 			</a>
-			<button type="button" class="btn variant-filled-primary">Fun Button</button>
+			<a
+				class="btn variant-filled-primary"
+				href="./statistics"
+				rel="noreferrer"
+			>
+				Stats
+			</a>
 		</div>
 		<div class="flex justify-center">
 

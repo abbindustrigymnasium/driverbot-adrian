@@ -65,20 +65,31 @@
     
     <div class=" flex-col justify-center items-center">
         <div class="flex justify-center *:my-1">
-            <button class=" variant-filled-primary size-16">
+            <button class=" variant-filled-primary size-16"
+                on:mousedown={() => handleKeyDown("w")}
+                on:mouseup={()=> handleKeyUp("w")}>
                 W
             </button>
         </div>
         <div class="flex">
-            <button class=" variant-filled-primary size-16">
+            <button
+                class=" variant-filled-primary size-16"
+                on:mousedown={() => handleKeyDown("a")}
+                on:mouseup={()=> handleKeyUp("a")}>
                 A
             </button>
     
-            <button class=" variant-filled-primary size-16 mx-1">
+            <button 
+                class=" variant-filled-primary size-16 mx-1"
+                on:mousedown={() => handleKeyDown("s")}
+                on:mouseup={()=> handleKeyUp("s")}>
+                
                 S
             </button>
     
-            <button class=" variant-filled-primary size-16">
+            <button class=" variant-filled-primary size-16"
+                on:mousedown={() => handleKeyDown("d")}
+                on:mouseup={()=> handleKeyUp("d")}>
                 D
             </button>
         </div>

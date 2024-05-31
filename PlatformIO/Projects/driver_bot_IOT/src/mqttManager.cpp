@@ -7,7 +7,7 @@
 Servo servo;
 
 const char* mqtt_url = "maqiatto.com";
-String topics[] = {"key_up", "key_down"};
+String topics[] = {"key_up", "key_down", "joy_stick"};
 const int topicSize = sizeof(topics) / sizeof(topics[0]);
 
 WiFiClient espClient;
@@ -64,23 +64,25 @@ void callback(char* topic, byte* payload, unsigned int length) {
     {
       Serial.println("Forward!");
       analogWrite(motorSpeedPin, 1024);
-      digitalWrite(motorDirPin, LOW);
+      digitalWrite(motorDirPin, HIGH);
     }
     else if (msg == "s")
     {
       Serial.println("Backwards!");
       analogWrite(motorSpeedPin, 1024);
-      digitalWrite(motorDirPin, HIGH);
+      digitalWrite(motorDirPin, LOW);
     }
     else if (msg == "a")
     {
+      servo.write(90);
       Serial.println("Left");
-      servo.write(0);
+      servo.write(45);
     }
     else if (msg == "d")
     {
+      servo.write(90);
       Serial.println("Right");
-      servo.write(180);
+      servo.write(135);
     }
 
   }
@@ -95,7 +97,53 @@ void callback(char* topic, byte* payload, unsigned int length) {
    {
     Serial.println("Stop rotational movment!!");
     servo.write(90);
+    Serial.println("Angle: " + servo.read());
    }
+  }
+  if (cutTopic == "joy_stick")
+  {
+    if (msg == "C")
+    {
+      servo.write(90);
+      analogWrite(motorSpeedPin, 0);
+    }
+    else if (msg == "N")
+    {
+      servo.write(90);
+      digitalWrite(motorDirPin, HIGH);
+      analogWrite(motorSpeedPin, 1024);
+    }
+    else if (msg == "S")
+    {
+      servo.write(90);
+      digitalWrite(motorDirPin, LOW);
+      analogWrite(motorSpeedPin, 1024);
+    }
+    else if (msg == "E" || msg == "NE")
+    {
+      servo.write(135);
+      digitalWrite(motorDirPin, HIGH);
+      analogWrite(motorSpeedPin, 1024);
+    }
+    else if (msg == "W" || msg == "NW")
+    {
+      servo.write(45);
+      digitalWrite(motorDirPin, HIGH);
+      analogWrite(motorSpeedPin, 1024);
+    }
+    else if (msg == "SE")
+    {
+      servo.write(135);
+      digitalWrite(motorDirPin, LOW);
+      analogWrite(motorSpeedPin, 1024);
+    }
+    else if (msg == "SW")
+    {
+      servo.write(45);
+      digitalWrite(motorDirPin, LOW);
+      analogWrite(motorSpeedPin, 1024);
+    }
+    
   }
 }
 

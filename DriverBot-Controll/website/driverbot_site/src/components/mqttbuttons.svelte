@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onSend, startConnect, startDisconnect} from "../stores/mqttStore";
-    import { isConnected, isKeymode, dummyRefresher } from "../stores/store";
+    import { isConnected, isKeymode, dummyRefresher, DriveDistance } from "../stores/store";
   import { onMount } from "svelte";
     
 
@@ -29,6 +29,11 @@
             })
         }
     })
+
+    function incrementDriveDistance()
+    {
+        DriveDistance.update(value => value+=1);
+    }
     
 
 
@@ -47,7 +52,7 @@
     {/if}
     
     <button type="button" class="btn variant-filled-primary my-2" disabled={$isConnected} on:click={startConnect}>Connect</button>
-    <button type="button" class="btn variant-filled-primary" on:click={() => sendMessage("Hej")}>Send Message</button>
+    <button type="button" class="btn variant-filled-primary" on:click={() => incrementDriveDistance()}>Send Message</button>
     <button type="button" class="btn variant-filled-primary my-2" on:click={() => toogleKeymode()}>Switch Mode</button>
 </div>
     

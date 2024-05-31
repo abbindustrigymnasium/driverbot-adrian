@@ -22,3 +22,22 @@ export const isKeymode = writable(false);
 // A dummy variable that triggers a re-render of the joystick component so it can scale with the screeen size automaticly
 
 export const dummyRefresher = writable(0);
+
+const isBrowser = typeof window !== "undefined";
+/**
+ * @param {string} storeKey
+ * @param {any} startValue
+ */
+function createInitialStoreValue(storeKey, startValue)
+{
+    const localStoreValue = localStorage.getItem(storeKey);
+    const storeInitValue = localStoreValue !== null ? parseInt(localStoreValue, 10): startValue;
+
+    const store = writable(storeInitValue);
+    store.subscribe(value => {
+        localStorage.setItem(storeKey, value);
+    })
+    return store;
+}
+
+export const DriveDistance = createInitialStoreValue("DriveDistance", 0);

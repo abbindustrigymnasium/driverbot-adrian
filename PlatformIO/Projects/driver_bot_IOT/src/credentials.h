@@ -8,7 +8,7 @@
 #define WIFI_PASS "mittwifiarsabra"
 
 
-//Dir LOW: Forward, HIGH: Backwards
+//Dir High: Forward, LOW: Backwards
 #define motorDirPin 0 //D2
 
 #define motorSpeedPin 5 //D5
