@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { onSend } from '../stores/mqttStore';
-    import { isConnected } from '../stores/store';
+    import { isConnected, isMoving } from '../stores/store';
     /**
      * @type {string}
      */
@@ -46,6 +46,14 @@
       // {
       //   input = input[0];
       // }
+      if (input == "C")
+      {
+        isMoving.set(false);
+      }
+      else
+      {
+        isMoving.set(true);
+      }
       console.log("input: " + input)
       onSend("joy_stick", input)
       }

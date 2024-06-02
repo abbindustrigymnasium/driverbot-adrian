@@ -1,7 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { onSend } from "../stores/mqttStore";
-    import { isConnected } from "../stores/store";
+    import { isConnected, isMoving } from "../stores/store";
+    import StatFunctions from "./statFunctions.svelte";
+    let funcs: StatFunctions; 
 
     function handleKeyDown(key: string)
     {
@@ -9,6 +11,12 @@
         {
             console.log(key + " down");
             onSend("key_down", key);
+            if (key == "w" || key == "s")
+            {
+                isMoving.set(true);
+                funcs.calcDriveDistance();
+                console.log("moving");
+            }
         }
          else
         {
@@ -22,6 +30,11 @@
         {
             console.log(key + " up");
             onSend("key_up", key);
+            if (key == "w" || key == "s")
+            {
+                isMoving.set(false);
+                console.log("not moving");
+            }
         }
          else
         {
@@ -59,6 +72,7 @@
     })
 
 </script>
+<StatFunctions bind:this={funcs}></StatFunctions>
 
 
 <div>

@@ -1,0 +1,1 @@
+Alla assembly filer använder sig av Lego_beam_2.stl

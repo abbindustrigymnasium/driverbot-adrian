@@ -3,6 +3,7 @@
  * @module stores/store
  */
 
+import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 
 /**
@@ -23,21 +24,28 @@ export const isKeymode = writable(false);
 
 export const dummyRefresher = writable(0);
 
+export const isMoving = writable(false);
+
 const isBrowser = typeof window !== "undefined";
 /**
  * @param {string} storeKey
  * @param {any} startValue
  */
 function createInitialStoreValue(storeKey, startValue)
-{
-    const localStoreValue = localStorage.getItem(storeKey);
-    const storeInitValue = localStoreValue !== null ? parseInt(localStoreValue, 10): startValue;
-
-    const store = writable(storeInitValue);
-    store.subscribe(value => {
-        localStorage.setItem(storeKey, value);
-    })
-    return store;
+{   
+   if(isBrowser)
+    {
+        const localStoreValue = localStorage.getItem(storeKey);
+        const storeInitValue = localStoreValue !== null ? parseInt(localStoreValue, 10): startValue;
+    
+        const store = writable(storeInitValue);
+        store.subscribe(value => {
+            localStorage.setItem(storeKey, value);
+        })
+        return store;
+    }
 }
 
-export const DriveDistance = createInitialStoreValue("DriveDistance", 0);
+export const DriveDistance = createInitialStoreValue("DriveDistance", 0.0);
+export const DriveTime = createInitialStoreValue("DriveTime", 0);
+export const timesConnected = createInitialStoreValue("timesConnected", 0);

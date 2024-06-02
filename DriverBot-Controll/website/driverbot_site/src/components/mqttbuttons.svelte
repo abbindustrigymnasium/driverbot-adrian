@@ -30,9 +30,12 @@
         }
     })
 
-    function incrementDriveDistance()
+    function zeroDriveDistance()
     {
-        DriveDistance.update(value => value+=1);
+        if (DriveDistance)
+        {
+            DriveDistance.set(0);
+        }
     }
     
 
@@ -52,7 +55,7 @@
     {/if}
     
     <button type="button" class="btn variant-filled-primary my-2" disabled={$isConnected} on:click={startConnect}>Connect</button>
-    <button type="button" class="btn variant-filled-primary" on:click={() => incrementDriveDistance()}>Send Message</button>
+    <button type="button" class="btn variant-filled-primary" on:click={() => zeroDriveDistance()}>Send Message</button>
     <button type="button" class="btn variant-filled-primary my-2" on:click={() => toogleKeymode()}>Switch Mode</button>
 </div>
     

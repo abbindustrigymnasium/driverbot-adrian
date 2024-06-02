@@ -1,7 +1,7 @@
 import { PUBLIC_MQTT_NAME, PUBLIC_MQTT_PASSWORD } from "$env/static/public";
 
 import mqtt from "mqtt";
-import { isConnected } from './store';
+import { isConnected, timesConnected } from './store';
 let connected = false;
 let User = { adress: "maqiatto.com", port: "8883", clientId: "Client_Admin", name: PUBLIC_MQTT_NAME, password: PUBLIC_MQTT_PASSWORD, topic: "key_down" };
 let clientId = "notyetAssigned";
@@ -41,6 +41,7 @@ export function startConnect() {
 
   client
     .on("connect", function () {
+      timesConnected?.update(value => value+=1);
       connected = client.connected;
       console.log(connected);
       console.log(clientId + " success");

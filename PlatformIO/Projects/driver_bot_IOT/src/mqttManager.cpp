@@ -63,13 +63,13 @@ void callback(char* topic, byte* payload, unsigned int length) {
     if (msg == "w")
     {
       Serial.println("Forward!");
-      analogWrite(motorSpeedPin, 1024);
+      analogWrite(motorSpeedPin, 255);
       digitalWrite(motorDirPin, HIGH);
     }
     else if (msg == "s")
     {
       Serial.println("Backwards!");
-      analogWrite(motorSpeedPin, 1024);
+      analogWrite(motorSpeedPin, 255);
       digitalWrite(motorDirPin, LOW);
     }
     else if (msg == "a")
@@ -111,37 +111,37 @@ void callback(char* topic, byte* payload, unsigned int length) {
     {
       servo.write(90);
       digitalWrite(motorDirPin, HIGH);
-      analogWrite(motorSpeedPin, 1024);
+      analogWrite(motorSpeedPin, 255);
     }
     else if (msg == "S")
     {
       servo.write(90);
       digitalWrite(motorDirPin, LOW);
-      analogWrite(motorSpeedPin, 1024);
+      analogWrite(motorSpeedPin, 255);
     }
     else if (msg == "E" || msg == "NE")
     {
       servo.write(135);
       digitalWrite(motorDirPin, HIGH);
-      analogWrite(motorSpeedPin, 1024);
+      analogWrite(motorSpeedPin, 255);
     }
     else if (msg == "W" || msg == "NW")
     {
       servo.write(45);
       digitalWrite(motorDirPin, HIGH);
-      analogWrite(motorSpeedPin, 1024);
+      analogWrite(motorSpeedPin, 255);
     }
     else if (msg == "SE")
     {
       servo.write(135);
       digitalWrite(motorDirPin, LOW);
-      analogWrite(motorSpeedPin, 1024);
+      analogWrite(motorSpeedPin, 255);
     }
     else if (msg == "SW")
     {
       servo.write(45);
       digitalWrite(motorDirPin, LOW);
-      analogWrite(motorSpeedPin, 1024);
+      analogWrite(motorSpeedPin, 255);
     }
     
   }
