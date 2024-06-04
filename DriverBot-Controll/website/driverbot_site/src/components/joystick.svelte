@@ -5,6 +5,8 @@
     /**
      * @type {string}
      */
+
+
     var joyDir:string;
   
     onMount(async () => {
@@ -12,16 +14,15 @@
       const joyScript = document.createElement('script');
       joyScript.src = 'https://bobboteck.github.io/joy/joy.js';
       joyScript.onload = () => {
-        // Initialize and use the joy.js library
+        // Initializethe joy.js library
         const options = {
             internalFillColor: "#00ADB5",
             externalStrokeColor: "#00ADB5",
             externalLineWidth: 4,
-          // Your joystick options
         };
         const joy = new JoyStick('joyDiv', options);
-        // You can now use the joy instance as needed
 
+        //Get position data of joystick every 50ms
         setInterval(function(){
           if (joyDir !== joy.GetDir())
           {
@@ -42,10 +43,8 @@
     {
       if ($isConnected)
       {
-      //   if (input.length > 1)
-      // {
-      //   input = input[0];
-      // }
+        //Set the car State to moving if joystick not centered
+        //Sedns position data to broker as cardinal directions including C as center
       if (input == "C")
       {
         isMoving.set(false);
@@ -65,7 +64,7 @@
   </script>
   
   
-
+<!-- Div where Joystick is placed when initilized -->
     <div class=" w-1/2 aspect-square" id="joyDiv">
 
     </div>

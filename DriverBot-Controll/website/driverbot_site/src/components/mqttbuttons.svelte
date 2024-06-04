@@ -1,23 +1,17 @@
 <script lang="ts">
-    import { onSend, startConnect, startDisconnect} from "../stores/mqttStore";
-    import { isConnected, isKeymode, dummyRefresher, DriveDistance } from "../stores/store";
+    import { startConnect} from "../stores/mqttStore";
+    import { isConnected, isKeymode, dummyRefresher } from "../stores/store";
   import { onMount } from "svelte";
     
 
-    function sendMessage(msg: string)
-    {
-        const message = msg === "Hej" ? "Hej": "";
-
-        onSend("key_down", message)
-    }
-
-    
+    //Switch between Keys and joystick Keymode(true) = keys | Keymode(false) = joystick
     function toogleKeymode()
     {
         isKeymode.update(value => !value);
         console.log($isKeymode)
     }
 
+    //refresh component on window resize (check dummyRefresher decleration for more info)
     onMount(()=> {
         addEventListener("resize", event => {
         dummyRefresher.update(value => value+=1);
@@ -29,17 +23,6 @@
             })
         }
     })
-
-    function zeroDriveDistance()
-    {
-        if (DriveDistance)
-        {
-            DriveDistance.set(0);
-        }
-    }
-    
-
-
     
 </script>
 
@@ -55,7 +38,6 @@
     {/if}
     
     <button type="button" class="btn variant-filled-primary my-2" disabled={$isConnected} on:click={startConnect}>Connect</button>
-    <button type="button" class="btn variant-filled-primary" on:click={() => zeroDriveDistance()}>Send Message</button>
     <button type="button" class="btn variant-filled-primary my-2" on:click={() => toogleKeymode()}>Switch Mode</button>
 </div>
     

@@ -1,13 +1,9 @@
 <script>
 
-  import { ListBox, ListBoxItem } from "@skeletonlabs/skeleton";
-//   let valueSingle = 'books';
-  import Testcomponent from "../testcomponent.svelte";
 </script>
-<!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 
 <div class="container h-full mx-auto flex justify-center items-center">
-	<div class="space-y-10 text-center flex flex-col items-center">
+	<div class=" text-center flex flex-col items-center">
 		<h2 class="h2">Welcome to Driver Bot.</h2>
 		<!-- Animated Logo -->
 		<figure>
@@ -31,13 +27,6 @@
 			</a>
 		</div>
 		<div class="flex justify-center">
-
-			<!-- <ListBox>
-				<ListBoxItem bind:group={valueSingle} name="medium" value="books">Books</ListBoxItem>
-				<ListBoxItem bind:group={valueSingle} name="medium" value="movies">Movies</ListBoxItem>
-				<ListBoxItem bind:group={valueSingle} name="medium" value="tv">TV</ListBoxItem>
-			</ListBox> -->
-
 		</div>
 	</div>
 </div>

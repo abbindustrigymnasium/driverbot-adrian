@@ -9,15 +9,6 @@ let client: any = null;
 let options = {};
 
 /**
- * Disconnects the MQTT client.
- * @returns {boolean} Returns false.
- */
-export function startDisconnect() {
-  client.disconnect();
-  return false;
-}
-
-/**
  * Connects the MQTT client.
  * @returns {string} Returns an empty string if already connected.
  */
@@ -36,11 +27,9 @@ export function startConnect() {
   };
   client = mqtt.connect(url, options);
   client.on('message', onMessage);
-// Joy stick thing:
-// https://bobboteck.github.io/joy/joy.html
-
   client
     .on("connect", function () {
+      //updates times connected stat when connection succeds
       timesConnected?.update(value => value+=1);
       connected = client.connected;
       console.log(connected);
@@ -62,7 +51,6 @@ export function startConnect() {
  * Handles the incoming MQTT message.
  * @param {string} topic - The topic of the message.
  * @param {Buffer} message - The message payload.
- * Here you can make a client that listens to a topic and then does something with the message.
  */
 const onMessage = (topic: any, message: string) => {
   console.log(message.toString());

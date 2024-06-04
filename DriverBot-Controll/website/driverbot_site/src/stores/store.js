@@ -21,15 +21,17 @@ export const isConnected = writable(false);
 export const isKeymode = writable(false);
 
 // A dummy variable that triggers a re-render of the joystick component so it can scale with the screeen size automaticly
-
 export const dummyRefresher = writable(0);
 
+// Store which tracks if car should be moving or not which is used for stats
 export const isMoving = writable(false);
-
+//checks if accessing stores from a browser
 const isBrowser = typeof window !== "undefined";
 /**
  * @param {string} storeKey
  * @param {any} startValue
+ * A functions which connects a store to a local storage key
+ * if available and sets a initial value for that store
  */
 function createInitialStoreValue(storeKey, startValue)
 {   
@@ -45,7 +47,9 @@ function createInitialStoreValue(storeKey, startValue)
         return store;
     }
 }
-
+//Tracks distance car has driven
 export const DriveDistance = createInitialStoreValue("DriveDistance", 0.0);
+//Tracks total time car has been moving
 export const DriveTime = createInitialStoreValue("DriveTime", 0);
+//Tracks successful connections to a mqtt broker
 export const timesConnected = createInitialStoreValue("timesConnected", 0);

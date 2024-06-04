@@ -4,18 +4,17 @@
     import { isConnected, isMoving } from "../stores/store";
     import StatFunctions from "./statFunctions.svelte";
     let funcs: StatFunctions; 
-
+    
+    //Send key down to broker and calculate difrent stats.
     function handleKeyDown(key: string)
     {
         if ($isConnected)
         {
-            console.log(key + " down");
             onSend("key_down", key);
             if (key == "w" || key == "s")
             {
                 isMoving.set(true);
-                funcs.calcDriveDistance();
-                console.log("moving");
+                funcs.calcStats();
             }
         }
          else
@@ -24,16 +23,16 @@
         }
         
     }
+
+    //Send key up to broker and show car not moving
     function handleKeyUp(key: string)
     {
         if ($isConnected)
         {
-            console.log(key + " up");
             onSend("key_up", key);
             if (key == "w" || key == "s")
             {
                 isMoving.set(false);
-                console.log("not moving");
             }
         }
          else
@@ -45,7 +44,9 @@
 
     onMount(()=> {
         addEventListener("keydown", event => {
+            //disables key spam when key is held down
             if (event.repeat) return;
+            //Handles valid key presses
             switch(event.key)
             {
                 case "w":
@@ -72,6 +73,7 @@
     })
 
 </script>
+<!-- Bind component to local variable -->
 <StatFunctions bind:this={funcs}></StatFunctions>
 
 

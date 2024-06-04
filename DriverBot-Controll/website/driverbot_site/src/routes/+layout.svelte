@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '../app.postcss';
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
-	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 	import GithubIcon from "../githubIcon.svelte";
 	import TiktokIcon from '../tiktokIcon.svelte';
 	import YoutubeLogo from '../youtubeLogo.svelte';
@@ -17,7 +16,7 @@
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 
-				<div class=" logo-cloud grid-cols-3 lg:!grid-cols-3 gap-1 w-36 h-42">
+				<div class=" logo-cloud grid-cols-3 lg:!grid-cols-3 gap-1 w-36 ">
 					<!-- lg:!grid-cols-3 -->
 					<a href="https://github.com/Adrian-Damianovici" target="_blank" class=" logo-item variant-filled">
 						<svelte:component this={GithubIcon} />
@@ -39,4 +38,12 @@
 	:global(body) {
 		@apply bg-gradient-to-t from-secondary-500  from-20% to-tertiary-500
 	}
+	:global(.material-symbols-outlined){
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 600,
+        'GRAD' 0,
+        'opsz' 48
+      }
+
 </style>

@@ -11,7 +11,9 @@
         // ~200rev/min
         // calculation: 
         // (circumference(mm) * rev/ms)/1000 = distance(m)/ms
-    export async function calcDriveDistance()
+
+        //updates stats every milisecond based on dimensions of motor and wheel
+    export async function calcStats()
     {
         while($isMoving)
         {
