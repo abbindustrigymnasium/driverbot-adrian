@@ -7,6 +7,7 @@
 
 void setup()
 {
+    //set up script
     servo.attach(2);
     pinMode(motorDirPin, OUTPUT);
     pinMode(motorSpeedPin, OUTPUT);
@@ -20,5 +21,6 @@ void setup()
 }
 void loop()
 {
+    //run everything that needs looping
     loopMQTT();
 }

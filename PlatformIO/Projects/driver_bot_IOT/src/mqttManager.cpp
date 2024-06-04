@@ -7,7 +7,9 @@
 Servo servo;
 
 const char* mqtt_url = "maqiatto.com";
+//includes all topics that needs to be subscribed to
 String topics[] = {"key_up", "key_down", "joy_stick"};
+//Size of topics array
 const int topicSize = sizeof(topics) / sizeof(topics[0]);
 
 WiFiClient espClient;
@@ -15,7 +17,6 @@ PubSubClient client(espClient);
 unsigned long lastMsg = 0;
 #define MSG_BUFFER_SIZE	(50)
 char msg[MSG_BUFFER_SIZE];
-int value = 0;
 
 void setup_wifi() {
 
@@ -32,7 +33,7 @@ void setup_wifi() {
     delay(500);
     Serial.print(".");
   }
-
+  //set seet for random
   randomSeed(micros());
 
   Serial.println("");
@@ -40,7 +41,7 @@ void setup_wifi() {
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
 }
-
+//funciton that runs on callback
 void callback(char* topic, byte* payload, unsigned int length) {
   String msg = "";
   Serial.print("Message arrived [");
@@ -52,7 +53,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   }
   Serial.println();
   Serial.println(msg);
-  
+  //Takes the topic and only uses the topic name istead of whole path
   String cutTopic;
   cutTopic = strtok(topic, "/");
   cutTopic = strtok(NULL, "/");
@@ -90,12 +91,10 @@ void callback(char* topic, byte* payload, unsigned int length) {
   {
    if (msg == "w" || msg == "s")
    {
-    Serial.println("Stop lateral movment!!");
     analogWrite(motorSpeedPin, 0);
    }
    else if (msg == "a" || msg == "d")
    {
-    Serial.println("Stop rotational movment!!");
     servo.write(90);
     Serial.println("Angle: " + servo.read());
    }
@@ -146,7 +145,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     
   }
 }
-
+//conects to all designated topics
 void reconnect( String arr[], int size) {
   // Loop until we're reconnected
   while (!client.connected()) {
